@@ -20,19 +20,14 @@
  * }
  *
  */
-function getDNSStats(domains) {
-  const obj = {};
-  domains.forEach((domain) => {
-    domain
-      .split('.')
-      .reverse()
-      .reduce((acc, word) => {
-        const res = `.${acc}.${word}`;
-        obj[res] = ++obj[res] || 1;
-        return res;
-      }, '');
-  });
-  return obj;
+ function deleteDigit(n) {
+  const num = Math.min(...n.toString().split('').map(Number));
+  const minIndex = n.toString().split('').indexOf(String(num));
+  return +n
+    .toString()
+    .split('')
+    .filter((elem, index) => minIndex !== index)
+    .join('');
 }
 
 module.exports = getDNSStats;
